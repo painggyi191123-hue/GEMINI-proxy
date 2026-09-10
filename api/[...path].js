@@ -10,9 +10,10 @@ export default async function handler(request) {
   
   const targetUrl = 'https://generativelanguage.googleapis.com' + targetPath + url.search;
 
-  // 🛡️ Client ရဲ့ IP နဲ့ Location ပါသွားမည့် Headers အားလုံးကို လုံးဝဖယ်ရှားပြီး Clean Header သုံးခြင်း
   const newHeaders = new Headers();
   newHeaders.set('Content-Type', 'application/json');
+  // 🇺🇸 Google က IP စစ်ဆေးတဲ့အခါ US ကနေ လှမ်းခေါ်နေတယ်လို့ မြင်စေရန် IP အစားထိုးခြင်း
+  newHeaders.set('x-forwarded-for', '8.8.8.8');
 
   const newRequest = new Request(targetUrl, {
     method: request.method,
